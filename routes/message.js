@@ -17,9 +17,9 @@ function messageApi(app) {
   const messageService = new MessageService();
 
   router.get('/:chatId', 
-  passport.authenticate('jwt', { session: false }),
-  scopesValidationHandler(['read:messages']),
-  validationHandler({ chatId: chatIdSchema }, 'params'), 
+  //passport.authenticate('jwt', { session: false }),
+  //scopesValidationHandler(['read:messages']),
+  //validationHandler({ chatId: chatIdSchema }, 'params'), 
   async function(req, res, next){
     const { chatId } = req.params;
     
@@ -37,9 +37,9 @@ function messageApi(app) {
 
 
   router.post('/', 
-  passport.authenticate('jwt', { session: false }),
-  scopesValidationHandler(['create:messages']),
-  validationHandler(createMessageSchema), 
+  //passport.authenticate('jwt', { session: false }),
+  //scopesValidationHandler(['create:messages']),
+  //validationHandler(createMessageSchema), 
   async function(req, res, next){
     const { body: message } = req;
 
@@ -57,10 +57,10 @@ function messageApi(app) {
 
 
   router.put('/:messageId', 
-  passport.authenticate('jwt', { session: false }),
-  scopesValidationHandler(['update:messages']),
-  validationHandler({ messageId: messageIdSchema }, 'params'), 
-  validationHandler(updateMessageSchema), 
+  //passport.authenticate('jwt', { session: false }),
+  //scopesValidationHandler(['update:messages']),
+  //validationHandler({ messageId: messageIdSchema }, 'params'), 
+  //validationHandler(updateMessageSchema), 
   async function(req, res, next) {
       const { messageId } = req.params;
       const { body: message } = req;
@@ -83,9 +83,9 @@ function messageApi(app) {
 
   
   router.delete('/:messageId', 
-  passport.authenticate('jwt', { session: false }),
-  scopesValidationHandler(['delete:messages']),
-  validationHandler({ messageId: messageIdSchema }, 'params'), 
+  //passport.authenticate('jwt', { session: false }),
+  //scopesValidationHandler(['delete:messages']),
+  //validationHandler({ messageId: messageIdSchema }, 'params'), 
   async function(req, res, next) {
       const { messageId } = req.params;
 

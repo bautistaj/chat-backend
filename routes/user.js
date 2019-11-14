@@ -14,7 +14,9 @@ function userApi(app) {
 
   const userService = new UserService();
 
-  router.get('/', passport.authenticate('jwt', { session: false }), async function(req, res, next) {
+  router.get('/', 
+  //passport.authenticate('jwt', { session: false }),
+  async function(req, res, next) {
     const { userName } = req.query;
     try {
 
@@ -29,7 +31,10 @@ function userApi(app) {
     }
   });
 
-  router.get('/:userId', passport.authenticate('jwt', { session: false }), validationHandler({ userId: userIdSchema }, 'params'), async function(req, res, next){
+  router.get('/:userId', 
+  //passport.authenticate('jwt', { session: false }), 
+  //validationHandler({ userId: userIdSchema }, 'params'),
+  async function(req, res, next){
     const { userId } = req.params;
     try {
       const user = await userService.getUserById({ userId });
@@ -43,7 +48,10 @@ function userApi(app) {
     }
   });
 
-  router.post('/', passport.authenticate('jwt', { session: false }), validationHandler(createUserSchema), async function(req, res, next){
+  router.post('/', 
+  //passport.authenticate('jwt', { session: false }), 
+  //validationHandler(createUserSchema), 
+  async function(req, res, next){
     const { body: user } = req;
 
     try {
@@ -58,7 +66,11 @@ function userApi(app) {
     }
   });
 
-  router.put('/:userId', passport.authenticate('jwt', { session: false }), validationHandler({ userId: userIdSchema }, 'params'), validationHandler(updateUserSchema), async function(req, res, next) {
+  router.put('/:userId', 
+  //passport.authenticate('jwt', { session: false }), 
+  //validationHandler({ userId: userIdSchema }, 'params'), 
+  //validationHandler(updateUserSchema), 
+  async function(req, res, next) {
       const { userId } = req.params;
       const { body: user } = req;
 
@@ -78,7 +90,10 @@ function userApi(app) {
     }
   );
 
-  router.delete('/:userId', passport.authenticate('jwt', { session: false }), validationHandler({ userId: userIdSchema }, 'params'), async function(req, res, next) {
+  router.delete('/:userId', 
+  //passport.authenticate('jwt', { session: false }), 
+  //validationHandler({ userId: userIdSchema }, 'params'), 
+  async function(req, res, next) {
       const { userId } = req.params;
 
       try {

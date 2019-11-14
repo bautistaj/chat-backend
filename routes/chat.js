@@ -13,7 +13,10 @@ function chatApi(app) {
 
   const chatService = new ChatService();
 
-  router.get('/:userId', passport.authenticate('jwt', { session: false }), validationHandler({ userId: chatIdSchema }, 'params'),async function(req, res, next){
+  router.get('/:userId', 
+  //passport.authenticate('jwt', { session: false }), 
+  //validationHandler({ userId: chatIdSchema }, 'params'),
+  async function(req, res, next){
     const { userId } = req.params;
 
     try {
@@ -28,7 +31,10 @@ function chatApi(app) {
     }
   });
 
-  router.post('/', passport.authenticate('jwt', { session: false }), validationHandler(createChatSchema), async function(req, res, next){
+  router.post('/', 
+  //passport.authenticate('jwt', { session: false }), 
+  //validationHandler(createChatSchema), 
+  async function(req, res, next){
     const { body: chat } = req;
 
     try {
@@ -43,7 +49,10 @@ function chatApi(app) {
     }
   });
 
-  router.delete('/:chatId', passport.authenticate('jwt', { session: false }), validationHandler({ chatId: chatIdSchema }, 'params'), async function(req, res, next) {
+  router.delete('/:chatId', 
+  //passport.authenticate('jwt', { session: false }), 
+  //validationHandler({ chatId: chatIdSchema }, 'params'), 
+  async function(req, res, next) {
       const { chatId } = req.params;
 
       try {

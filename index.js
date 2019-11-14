@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const { config } = require('./config/index');
 const userApi = require('./routes/user');
@@ -12,6 +13,7 @@ const notFoundHandler = require('./util/middleware/notFoundHandler');
 
 //body parser
 app.use(express.json());
+app.use(cors());
 
 //routes
 authApi(app);
