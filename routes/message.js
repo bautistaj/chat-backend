@@ -1,6 +1,7 @@
 const express =  require('express');
 const MessageService = require('../services/message');
 const passport = require('passport');
+const { socket } = require('../socket');
 
 const { messageIdSchema, createMessageSchema, updateMessageSchema } = require('../util/schemas/message');
 const { chatIdSchema } = require('../util/schemas/chat');
@@ -25,7 +26,6 @@ function messageApi(app) {
     
     try {
       const messages = await messageService.getMessages({ chatId });
-
       res.status(200).json({
         data: messages,
         message: 'Messages retrived'
@@ -45,7 +45,7 @@ function messageApi(app) {
 
     try {
       const messageCreatedId = await messageService.createMessage({ message });  
-
+      socket.io.emit('message', message);
       res.status(201).json({
         data: messageCreatedId,
         message: 'Message created'

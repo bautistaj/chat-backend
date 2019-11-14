@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
 const cors = require('cors');
-
+const socket = require('./socket');
 const { config } = require('./config/index');
 const userApi = require('./routes/user');
 const chatApi = require('./routes/chat');
@@ -15,6 +16,8 @@ const notFoundHandler = require('./util/middleware/notFoundHandler');
 app.use(express.json());
 app.use(cors());
 
+//socket
+socket.connect(server);
 //routes
 authApi(app);
 userApi(app);
@@ -29,6 +32,6 @@ app.use(logError);
 app.use(wrapError);
 app.use(errorHandler);
 
-app.listen(config.port, function(){
+server.listen(config.port, function(){
   console.log(`Listening http://localhost:${config.port}`);
 });
