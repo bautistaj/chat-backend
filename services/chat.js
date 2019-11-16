@@ -6,8 +6,8 @@ class ChatService {
     this.mongoDB = new MongoLib();
   }
 
-  async getChats({ userId }) {
-    const query = userId && { users: userId };
+  async getChats({ users }) {
+    const query = users && { users: { $all: users.split(',') }};
     const chats = await this.mongoDB.getAll(this.collection, query);
     return chats || [];
   }

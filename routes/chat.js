@@ -13,14 +13,14 @@ function chatApi(app) {
 
   const chatService = new ChatService();
 
-  router.get('/:userId', 
+  router.get('/:users', 
   //passport.authenticate('jwt', { session: false }), 
   //validationHandler({ userId: chatIdSchema }, 'params'),
   async function(req, res, next){
-    const { userId } = req.params;
-
+    const { users } = req.params;
+    console.log(users);
     try {
-      const chats = await chatService.getChats({ userId });
+      const chats = await chatService.getChats({ users });
 
       res.status(200).json({
         data: chats,
