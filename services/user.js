@@ -8,7 +8,7 @@ class UserService {
   }
 
   async getUsers({ userName }) {
-    const query = userName && { name: userName };
+    const query = userName && { userName: userName };
     const users = await this.mongoDB.getAll(this.collection, query);
     return users || [];
   }

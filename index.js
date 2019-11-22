@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
+const helmet = require('helmet');
 const cors = require('cors');
 const socket = require('./socket');
 const { config } = require('./config/index');
@@ -14,6 +15,7 @@ const notFoundHandler = require('./util/middleware/notFoundHandler');
 
 //body parser
 app.use(express.json());
+app.use(helmet());
 app.use(cors());
 
 //socket

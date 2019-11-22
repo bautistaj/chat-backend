@@ -68,9 +68,7 @@ function authApi(app) {
 
   //::::::::: sign-in
   router.post('/sign-up', validationHandler(createUserSchema), async function(req, res, next) {
-    const { body: user } = req;
-    console.log(user);
-    
+    const { body: user } = req;    
     try {
       
       const createdUserId = await userService.createUser({user});

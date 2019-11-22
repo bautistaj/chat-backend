@@ -9,8 +9,6 @@ passport.use(new BasicStrategy(async function(email, password, callBack) {
   const userService = new UserService();
 
   try {
-    console.log('email',email);
-    console.log('password',password);
     
     const user = await userService.getUser({ email });
     
